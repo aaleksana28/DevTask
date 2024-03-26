@@ -1,5 +1,10 @@
 <?php
 include './vendor/autoload.php';
+session_start();
+
+if (!isset($_SESSION['AUTH']) && !$_SESSION['AUTH']) {
+    header('Location: http://devtask/auth.php');
+}
 
 $valute_list = \Aleks\Devtask\Parser::getDataFromFile();
 
@@ -10,7 +15,6 @@ if (isset($_GET['submit'])) {
     $rub_value = (float)$source_valute['VALUTE_VALUE'] * $value ;
     $needle_value = $rub_value / (float)$needle_valute['VALUTE_VALUE'];
 }
-
 ?>
 
 <!doctype html>
@@ -23,8 +27,9 @@ if (isset($_GET['submit'])) {
     <title>Конвертация валют</title>
 </head>
 <body>
+    <?php if (isset($needle_value)) echo 'Результат перевода получился: ' . $needle_value . ' ' . $needle_valute['NAME'];?>
     <form action="/" method="get">
-        <?php if (!isset($needle_valuee)) echo 'Результат перевода получился: ' . $needle_value . ' ' . $needle_valute['NAME'];?>
+
         <label for="">Сумма перевода:</label>
         <input type="number" name="valute_value_src">
         <label for="">Исходная валюта:</label>
