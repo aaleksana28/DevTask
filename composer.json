@@ -1,0 +1,15 @@
+{
+    "name": "aleks/devtask",
+    "autoload": {
+        "psr-4": {
+            "Aleks\\Devtask\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "aaleksana28",
+            "email": "aaleksana28@gmail.com"
+        }
+    ],
+    "require": {}
+}
